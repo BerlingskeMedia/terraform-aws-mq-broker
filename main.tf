@@ -1,7 +1,7 @@
 locals {
   enabled = module.this.enabled
 
-  mq_admin_user_enabled = local.enabled && var.engine_type == "ActiveMQ"
+  mq_admin_user_enabled = local.enabled
 
   mq_admin_user_needed = local.mq_admin_user_enabled && length(var.mq_admin_user) == 0
   mq_admin_user        = local.mq_admin_user_needed ? random_pet.mq_admin_user[0].id : try(var.mq_admin_user[0], "")
